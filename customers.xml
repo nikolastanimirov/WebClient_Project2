@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <record>
+    <name>Bérangère</name>
+    <phone>713-891-5497</phone>
+    <city>Houston</city>
+  </record>
+  <record>
+    <name>Kallisté</name>
+    <phone>836-693-6906</phone>
+    <city>San Miguel</city>
+  </record>
+  <record>
+    <name>Tú</name>
+    <phone>671-696-4231</phone>
+    <city>Pinghu</city>
+  </record>
+  <record>
+    <name>Mélodie</name>
+    <phone>811-808-4507</phone>
+    <city>Fordon</city>
+  </record>
+  <record>
+    <name>Loïs</name>
+    <phone>320-470-2713</phone>
+    <city>Moycullen</city>
+  </record>
+  <record>
+    <name>Célia</name>
+    <phone>205-829-0312</phone>
+    <city>Frýdek-Místek</city>
+  </record>
+  <record>
+    <name>Görel</name>
+    <phone>803-787-9036</phone>
+    <city>Jengglungharjo</city>
+  </record>
+  <record>
+    <name>Daphnée</name>
+    <phone>548-466-0709</phone>
+    <city>Lizhai</city>
+  </record>
+  <record>
+    <name>Estée</name>
+    <phone>399-532-5337</phone>
+    <city>Tuoshi</city>
+  </record>
+  <record>
+    <name>Maïwenn</name>
+    <phone>634-264-3063</phone>
+    <city>Roma</city>
+  </record>
+</dataset>

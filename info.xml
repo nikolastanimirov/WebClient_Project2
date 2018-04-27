@@ -1,0 +1,24 @@
+<xml id="people">
+<state>
+    <name>Georgi </name>
+    <last>Ivanov</last>
+</state>
+<state>
+    <name>Nikola</name>
+    <last>Stanimirov</last>
+</state>
+<state>
+    <name>Bogdan</name>
+    <last>Dimitrov</last>
+</state>
+<state>
+    <name>Nikolay</name>
+    <last>Petrov</last>
+</state>
+<state>
+    <name>Ivan</name>
+    <last>Petkov</last>
+</state>
+
+
+</xml>

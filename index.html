@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  
+    <link rel="stylesheet" href="style.css">
+    <title>Weather Application</title>
+</head>
+<body>
+    <header>
+      <div id="time"></div>
+    <h1>WELCOME TO OUR RETAILER ONLINE STORE</h1>
+    </header>
+    <div id="map"></div></br>
+    <hr size="5" color="#FFF">
+    <div id="container">
+        <div id="customer-support">
+            <h1>Customer Support</h1>
+            <input type="text" placeholder="Search for essential personal" id="searchField" autocomplete="on" onkeyup="searchSuggest()" /> <br />
+            <div id="suggestions">
+               <ul id="suggestions-list"></ul>
+            </div>
+        </div>
+        <hr size="5" color="#FFF">
+        <button type="button" onclick="loadDoc()">Get customer information</button>
+<br><br>
+<table id="demo"></table>
+        </br>
+        <hr size="5" color="#FFF">
+        
+        <input type="text" id="city" placeholder="Enter a city..."/>
+        <button id="btn">WEATHER</button>
+        <div id="show"></div>
+        <hr size="5" color="#FFF">
+    </br>
+        <input type="text" id="country" placeholder="Enter a country abriviation(US)"/>
+        <button id="btn2">NEWS</button>
+        <div id="show_news"></div>
+    </div>
+
+    
+    <script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    myFunction(this);
+    }
+  };
+  xhttp.open("GET", "customers.xml", true);
+  xhttp.send();
+}
+function myFunction(xml) {
+  var i;
+  var xmlDoc = xml.responseXML;
+  var table="<tr><th>Name</th><th>Phone</th><th>City</th></tr>";
+  var x = xmlDoc.getElementsByTagName("record");
+  for (i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("phone")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("city")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+}
+//regualar expression which we will use for matching
+function test(input, whole) {
+  return whole.startsWith(input);
+}
+//array of the states as a global variable
+var statesArray = [];
+//ajax request
+var ajaxRequest = new XMLHttpRequest();
+ajaxRequest.onreadystatechange = setStatesArray;
+ajaxRequest.open("GET","info.xml", false);
+ajaxRequest.send(null);  
+//secures the connection and loops through the elements in the xml file
+function setStatesArray() {
+    if (ajaxRequest.readyState == 4) {
+        if (ajaxRequest.status == 200) {
+           if (ajaxRequest.responseXML) {
+              var allStates = ajaxRequest.responseXML.getElementsByTagName("state");
+              for (var i=0; i<allStates.length; i++) {
+                   statesArray[i] = allStates[i].getElementsByTagName("name")[0].firstChild;
+              }
+         }
+      }
+  }
+}
+function searchSuggest() {
+  document.getElementById("suggestions-list").innerHTML = "";
+  var value = document.getElementById("searchField").value;
+  statesArray.forEach(function(state) {
+    if(test(value.toUpperCase(), state.data.toUpperCase())) {
+      document.getElementById("suggestions-list").innerHTML += "<li>" + state.data +"</li>";
+    }
+  });
+
+}
+        //Returns Pins of selected locations
+        function initMap() {
+            var location1 = {lat: 41.00496, lng: 23.096707};
+            var location = 
+            [{lat:42.698334, lng: 23.319941},
+            {lat: 42.019042, lng: 23.096707},
+            {lat: 42.510578, lng: 27.461014},
+            {lat: 43.204666, lng: 27.910543},
+            {lat: 42.1499994, lng: 24.749997}];
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: location[0]
+          });
+          for(var i=0;i<location.length;i++){
+          var marker = new google.maps.Marker({
+            position: location[i],
+            map: map
+          });
+         }
+        }
+      </script>
+    
+    <!-- Goole API -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXDDtP1jH6van7wRKjCyUT2LOXMazmbyI&callback=initMap">
+    </script>
+    <script src="script.js"></script>
+    
+</body>
+</html>
